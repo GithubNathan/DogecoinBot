@@ -20,7 +20,7 @@ def printprice():
     print(close_price)
 
 
-TOKEN = 'ODQ0OTY4NjE4ODI3ODQxNTc5.YKaIWQ.DUOTakg7UjJ4Jl7GCRs1DpZHXZA'
+TOKEN = 'xxx'
 
 client = discord.Client()
 

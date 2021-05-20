@@ -26,6 +26,8 @@ client = discord.Client()
 
 bot = commands.Bot(command_prefix='!')
 
+
+
 @client.event
 async def on_ready():
     print(f'{client.user} has connected to Discord!')
@@ -43,16 +45,22 @@ async def on_message(message):
         page_soup = soup(page_html, "html.parser")
 
         container = page_soup.findAll("span", {"class": "Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)"})
-        close_price = [entry.text for entry in page_soup.find_all('span', {'class': 'Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)'})]
+        close_price = [entry.text for entry in
+                       page_soup.find_all('span', {'class': 'Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)'})]
         channel = client.get_channel(844976720779935795)
         await channel.send(close_price)
 
+    if message.content == 'dayrange':
+        myurl = 'https://finance.yahoo.com/quote/DOGE-USD/'
+        uClient = uReq(myurl)
+        page_html = uClient.read()
+        page_soup = soup(page_html, "html.parser")
+
+        dayrange = [entry.text for entry in page_soup.find_all('td', {'data-reactid':'57'})]
+        channel = client.get_channel(844976720779935795)
+        await channel.send(dayrange)
+
+
+
+
 client.run(TOKEN)
-
-
-
-
-
-
-
-
